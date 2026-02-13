@@ -1,0 +1,62 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<section class="banner">
+  <div class="banner__overlay"></div>
+  <div class="banner__content">
+    <h1 class="banner__title">{title}</h1>
+    {subtitle && <p class="banner__subtitle">{subtitle}</p>}
+  </div>
+</section>
+
+<style>
+  .banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    padding-top: 80px; /* account for fixed header */
+    background-color: var(--theme-primary);
+    overflow: hidden;
+  }
+
+  .banner__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      var(--theme-primary-dark) 0%,
+      var(--theme-primary) 50%,
+      var(--theme-primary-light) 100%
+    );
+    opacity: 0.9;
+  }
+
+  .banner__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .banner__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--theme-text-on-primary);
+  }
+
+  .banner__subtitle {
+    margin-top: var(--space-sm);
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--theme-text-on-primary);
+    opacity: 0.85;
+  }
+</style>

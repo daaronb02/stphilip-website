@@ -1,0 +1,116 @@
+[
+  {
+    "category": "General Links",
+    "links": [
+      {
+        "name": "Holy Protection of Mary Eparchy of Phoenix",
+        "description": "Our eparchy",
+        "url": "https://ephx.org"
+      },
+      {
+        "name": "Eparchial Tribunal",
+        "url": "https://www.ephx.org/eparchial-tribunal"
+      },
+      {
+        "name": "Archeparchy of Pittsburgh",
+        "url": "https://archpitt.org"
+      },
+      {
+        "name": "Norms of Particular Law of the Byzantine Metropolitan Church Sui Iuris of Pittsburgh",
+        "url": "https://www.ewtn.com/catholicism/library/norms-of-particular-law-of-the-byzantine-metropolitan-churchsui-iuris-of-pittsburgh-3663"
+      },
+      {
+        "name": "The Vatican",
+        "url": "https://www.vatican.va/content/vatican/en.html"
+      },
+      {
+        "name": "Byzantine Catholic Seminary",
+        "url": "https://bcs.edu"
+      },
+      {
+        "name": "Metropolitan Cantor Institute",
+        "url": "https://mci.archpitt.org"
+      },
+      {
+        "name": "Byzantine Seminary Press",
+        "url": "https://www.byzantineseminarypress.com"
+      },
+      {
+        "name": "Byzantine Catholic Church in America",
+        "url": "https://www.byzcath.org"
+      },
+      {
+        "name": "International Theological Institute (ITI)",
+        "url": "https://iti.ac.at"
+      },
+      {
+        "name": "Relevant Radio",
+        "description": "Catholic talk radio",
+        "url": "https://www.relevantradio.com"
+      },
+      {
+        "name": "Radio Santisimo",
+        "description": "Catholic radio in Spanish",
+        "url": "https://www.radiosantisimosacramento.com"
+      },
+      {
+        "name": "Safe Environment and Child Protection",
+        "url": "https://ephx.org/office-of-safe-environment"
+      }
+    ]
+  },
+  {
+    "category": "Our Neighbors",
+    "links": [
+      {
+        "name": "Saint Peter and All Hallows",
+        "description": "Services in English, Spanish and Hmong",
+        "url": "https://sp-ah.org"
+      },
+      {
+        "name": "St. Stephen the First Martyr",
+        "description": "Services in Latin",
+        "url": "https://www.sacfssp.com"
+      },
+      {
+        "name": "St. Mary",
+        "url": "https://www.stmarysacto.org"
+      }
+    ]
+  },
+  {
+    "category": "Other Eastern Catholic Churches in Sacramento Area",
+    "links": [
+      {
+        "name": "Our Lady of Perpetual Help",
+        "description": "Chaldean & Assyrian",
+        "url": "http://www.ourladyofperpetualhelpchurch.com"
+      },
+      {
+        "name": "Our Lady of the Rosary",
+        "description": "Maronite",
+        "url": "http://www.maronite-sac.org"
+      },
+      {
+        "name": "Saint George",
+        "description": "Melkite Greek-Catholic",
+        "url": "https://stgeorgemelkite.org"
+      },
+      {
+        "name": "Infant Jesus",
+        "description": "Syro-Malabar",
+        "url": "https://infantjesussacramento.org"
+      },
+      {
+        "name": "Holy Wisdom",
+        "description": "Ukrainian",
+        "url": "https://www.holywisdomsacramento.org"
+      },
+      {
+        "name": "Saint Andrew",
+        "description": "Ukrainian",
+        "url": "https://ukrainianparish.com"
+      }
+    ]
+  }
+]

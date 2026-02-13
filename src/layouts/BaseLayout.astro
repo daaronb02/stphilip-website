@@ -1,0 +1,111 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import { getCurrentThemeSlug } from '../utils/liturgical-calendar';
+import { getTheme } from '../utils/theme';
+
+interface Props {
+  title: string;
+  description?: string;
+  isHomepage?: boolean;
+}
+
+const { title, description = 'St. Philip Byzantine Catholic Church — an Eastern Catholic parish', isHomepage = false } = Astro.props;
+
+const themeSlug = getCurrentThemeSlug();
+const theme = getTheme(themeSlug);
+const { colors } = theme;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
+    <Header isHomepage={isHomepage} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Mobile nav toggle
+      const hamburger = document.querySelector<HTMLButtonElement>('[data-hamburger]');
+      const mobileMenu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', () => {
+          const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+          hamburger.setAttribute('aria-expanded', String(!isOpen));
+          hamburger.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+          mobileMenu.classList.toggle('is-open');
+          document.body.style.overflow = isOpen ? '' : 'hidden';
+        });
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.setAttribute('aria-label', 'Open navigation menu');
+            mobileMenu.classList.remove('is-open');
+            document.body.style.overflow = '';
+            hamburger.focus();
+          }
+        });
+
+        // Close when clicking a nav link in mobile menu
+        mobileMenu.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            hamburger.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.remove('is-open');
+            document.body.style.overflow = '';
+          });
+        });
+      }
+
+      // Fade-in observer for sections
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReducedMotion) {
+        const fadeObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                fadeObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        );
+
+        document.querySelectorAll('.fade-in-section').forEach((el) => {
+          fadeObserver.observe(el);
+        });
+      } else {
+        // Make everything visible immediately
+        document.querySelectorAll('.fade-in-section').forEach((el) => {
+          el.classList.add('is-visible');
+        });
+      }
+    </script>
+  </body>
+</html>
+
+<style is:global define:vars={{
+  'theme-primary': colors.primary,
+  'theme-primary-light': colors.primaryLight,
+  'theme-primary-dark': colors.primaryDark,
+  'theme-accent': colors.accent,
+  'theme-text-on-primary': colors.textOnPrimary,
+  'theme-hero-overlay': colors.heroOverlay,
+}}>
+  /* Theme variables are injected via define:vars above */
+</style>

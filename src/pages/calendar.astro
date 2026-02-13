@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BannerImage from '../components/BannerImage.astro';
+---
+
+<BaseLayout title="Calendar — St. Philip Byzantine Catholic Church" description="View our parish calendar for upcoming services, feast days, and events.">
+  <BannerImage title="Parish Calendar" subtitle="Divine Liturgy, feast days, and events" />
+
+  <section class="calendar-section fade-in-section">
+    <div class="container">
+      <div class="calendar-section__intro">
+        <p>
+          Our parish follows the Byzantine liturgical calendar, celebrating the ancient feasts and fasting seasons of the Eastern Church. In addition to Sunday Divine Liturgy, we have regularly scheduled Liturgy throughout the week and on Holy Days. Please see the calendar below for the most up to date information.
+        </p>
+      </div>
+
+      <div class="calendar-section__embed">
+        <!-- Replace the src URL below with your Google Calendar embed URL -->
+        <iframe
+          src="https://calendar.google.com/calendar/embed?src=stphilipbyzantine%40gmail.com&amp;ctz=America/Los_Angeles"
+          title="St. Philip Byzantine Catholic Church Calendar"
+          width="100%"
+          height="600"
+          frameborder="0"
+          scrolling="no"
+          loading="lazy"
+        ></iframe>
+        <p class="calendar-section__note">
+          <small>If the calendar does not display, please try refreshing the page or <a href="https://calendar.google.com/calendar/embed?src=PLACEHOLDER_CALENDAR_ID&ctz=America%2FNew_York" target="_blank" rel="noopener noreferrer">view it directly on Google Calendar</a>.</small>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .calendar-section {
+    padding-block: var(--space-2xl);
+  }
+
+  .calendar-section__intro {
+    max-width: var(--max-width-narrow);
+    margin-inline: auto;
+    margin-bottom: var(--space-xl);
+    text-align: center;
+  }
+
+  .calendar-section__intro p {
+    margin-inline: auto;
+    color: var(--color-text);
+  }
+
+  .calendar-section__embed {
+    max-width: 960px;
+    margin-inline: auto;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background-color: #ffffff;
+  }
+
+  .calendar-section__embed iframe {
+    display: block;
+    width: 100%;
+    min-height: 500px;
+  }
+
+  @media (min-width: 768px) {
+    .calendar-section__embed iframe {
+      min-height: 600px;
+    }
+  }
+
+  .calendar-section__note {
+    padding: var(--space-md);
+    text-align: center;
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+  }
+</style>

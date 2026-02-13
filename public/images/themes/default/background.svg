@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="75%" fx="50%" fy="40%">
+      <stop offset="0%" stop-color="#b8a994"/>
+      <stop offset="50%" stop-color="#8a7e6e"/>
+      <stop offset="100%" stop-color="#5c5347"/>
+    </radialGradient>
+    <g id="cross">
+      <rect x="-20" y="-160" width="40" height="320" rx="4"/>
+      <rect x="-100" y="-80" width="200" height="30" rx="4"/>
+      <rect x="-60" y="-130" width="120" height="24" rx="4"/>
+      <line x1="-70" y1="100" x2="70" y2="100" stroke-width="24" stroke-linecap="round" transform="rotate(-15, 0, 100)"/>
+    </g>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <use href="#cross" x="960" y="540" fill="#b8a994" fill-opacity="0.15" stroke="#b8a994" stroke-opacity="0.15"/>
+</svg>

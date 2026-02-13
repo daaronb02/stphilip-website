@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BannerImage from '../components/BannerImage.astro';
+import LinkCard from '../components/LinkCard.astro';
+import linksData from '../data/links.json';
+---
+
+<BaseLayout title="Links — St. Philip Byzantine Catholic Church" description="Helpful links to related parishes, eparchies, and Eastern Catholic resources.">
+  <BannerImage title="Links" subtitle="Resources for the faithful" />
+
+  <section class="links-section fade-in-section">
+    <div class="container">
+      <div class="links-section__intro">
+        <p>
+          Below you will find links to our archeparchy, related parishes, and other resources for those interested in Eastern Catholic Christianity.
+        </p>
+      </div>
+
+      {linksData.map((linkgroup) => (
+        <div class="links-section__intro">
+        <p>
+          {linkgroup.category}
+        </p>
+        <div class="links-section__grid">
+        {linkgroup.links.map((link) => (
+          <LinkCard
+            name={link.name}
+            description={link.description || ""}
+            url={link.url}
+          />
+        ))}
+      </div>
+      </div>
+      ))}
+{/*
+      <div class="links-section__grid">
+        {linksData.map((link) => (
+          <LinkCard
+            name={link.name}
+            description={link.description}
+            url={link.url}
+          />
+        ))}
+      </div>
+    </div>
+    */}
+  </section>
+</BaseLayout>
+
+<style>
+  .links-section {
+    padding-block: var(--space-2xl);
+  }
+
+  .links-section__intro {
+    max-width: var(--max-width-narrow);
+    margin-inline: auto;
+    margin-bottom: var(--space-xl);
+    text-align: center;
+  }
+
+  .links-section__intro p {
+    margin-inline: auto;
+    color: var(--color-text);
+  }
+
+  .links-section__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-lg);
+    max-width: 960px;
+    margin-inline: auto;
+  }
+</style>

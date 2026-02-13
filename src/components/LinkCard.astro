@@ -1,0 +1,67 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  url: string;
+}
+
+const { name, description, url } = Astro.props;
+---
+
+<a href={url} class="link-card" target="_blank" rel="noopener noreferrer">
+  <h3 class="link-card__name">{name}</h3>
+  <p class="link-card__description">{description}</p>
+  <span class="link-card__arrow" aria-hidden="true">&rarr;</span>
+</a>
+
+<style>
+  .link-card {
+    display: block;
+    padding: var(--space-lg);
+    background-color: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: border-color var(--transition-fast),
+                box-shadow var(--transition-fast),
+                transform var(--transition-fast);
+    position: relative;
+  }
+
+  .link-card:hover {
+    border-color: var(--theme-primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .link-card__name {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--theme-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .link-card__description {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  .link-card__arrow {
+    position: absolute;
+    top: var(--space-lg);
+    right: var(--space-lg);
+    font-size: 1.25rem;
+    color: var(--theme-primary);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .link-card:hover .link-card__arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>

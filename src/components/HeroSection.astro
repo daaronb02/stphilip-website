@@ -1,0 +1,144 @@
+---
+interface Props {
+  themeSlug: string;
+}
+
+const { themeSlug } = Astro.props;
+const backgroundImage = `/images/themes/${themeSlug}/background.jpg` || `/images/themes/${themeSlug}/background.svg`;
+---
+
+<section class="hero" data-hero>
+  <div class="hero__background" style={`background-image: url(${backgroundImage});`}></div>
+  <div class="hero__overlay"></div>
+  <div class="hero__content" data-hero-content>
+    <img
+      src="/images/general/logo.svg"
+      alt=""
+      class="hero__logo"
+      width="120"
+      height="120"
+    />
+    <div class="hero__text">
+      <h1 class="hero__title">St. Philip the Apostle<br />Byzantine Catholic Church</h1>
+      <p class="hero__subtitle">A parish of the Byzantine Catholic Eparchy of Phoenix</p>
+    </div>
+  </div>
+  <div class="hero__scroll-prompt" aria-hidden="true" data-scroll-prompt>
+    <span>Scroll</span>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M10 4 L10 16 M4 10 L10 16 L16 10"/>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero__background {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: var(--theme-hero-overlay);
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    text-align: center;
+    color: #ffffff;
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+  }
+
+  @media (max-width: 600px) {
+    .hero__content {
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+  }
+
+  .hero__logo {
+    width: 100px;
+    height: 100px;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 601px) {
+    .hero__logo {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  .hero__text {
+    text-align: left;
+  }
+
+  @media (max-width: 600px) {
+    .hero__text {
+      text-align: center;
+    }
+  }
+
+  .hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero__subtitle {
+    margin-top: var(--space-sm);
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+
+  .hero__scroll-prompt {
+    position: absolute;
+    bottom: var(--space-xl);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+</style>

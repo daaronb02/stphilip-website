@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BannerImage from '../components/BannerImage.astro';
+---
+
+<BaseLayout title="About Us — St. Philip Byzantine Catholic Church" description="Learn about our history, mission, and beliefs as a Byzantine Catholic parish.">
+  <BannerImage title="About Us"/>
+
+  <section class="about-section fade-in-section">
+    <div class="container container--narrow">
+      <h2>Our History</h2>
+      <p>
+        St. Philip Byzantine Catholic Church was founded by immigrants from the Carpathian regions of Central and Eastern Europe who brought with them the rich liturgical and spiritual traditions of the Christian East. For generations, our parish has been a spiritual home where the ancient faith is celebrated in the Byzantine tradition while remaining in full communion with the Bishop of Rome.
+      </p>
+      <p>
+        From our humble beginnings, the parish has grown into a vibrant community that welcomes all who seek to encounter Christ through the beauty and depth of Eastern Christian worship.
+      </p>
+    </div>
+  </section>
+
+  <section class="about-section about-section--alt fade-in-section">
+    <div class="container container--narrow">
+      <h2>Our Pastor</h2>
+      <img src="/images/general/fr-murin.jpg" alt="Father Francis Murin" class="about-section__image" width="400" height="300"/>
+      <p>
+        Father Francis  Murin was born in 1976 in Eastern Slovakia. After high school, he entered the Byzantine seminary in Presov, to study Sacred Theology and receive seminary formation. From there, he proceeded to Gaming, Austria, where he spent one year studying English and five semesters obtaining a Licentiate in theology at the International Theological Institute (ITI), a small Pontifical Academy founded at the request of Pope John Paul II for studies on Marriage and the Family. Finally, he spent two years in Rome, Italy, completing the coursework towards a doctorate in theology at the Pontifical College of St. Thomas.      </p>
+      <p>
+        During the course of his studies, he met his future wife, Kimberly Leatherby, a native of Sacramento. Kimberly was also a student of theology at the ITI. They married in June 2002, and have been blessed with eight daughters.
+      </p>
+      <p>
+        In June 2004, Father Francis was ordained to the Priesthood in the Archeparchy of Presov, Slovakia. He served in Slovakia for four years before being transferred to the Eparchy of Van Nuys. He was assigned by Bishop Gerald Dino as pastor of St. Philip’s on September 1, 2009. He transferred back to Slovakia with his family in September, 2021 and returned in 2025.
+      </p>
+    </div>
+  </section>
+
+  <section class="about-section fade-in-section">
+    <div class="container container--narrow">
+      <h2>What We Believe</h2>
+      <p>
+        As Byzantine Catholics, we profess the same faith as all Catholics, expressed through the theological and liturgical heritage of the Christian East. We celebrate the Divine Liturgy of St. John Chrysostom, chant the ancient hymns of the Church, and venerate the holy icons that surround us in worship.
+      </p>
+      <p>
+        We believe in one God — Father, Son, and Holy Spirit. We believe in the real presence of Christ in the Holy Eucharist. We honor Mary the Theotokos, God-bearer, and the saints who have gone before us. And we hold fast to the apostolic faith handed down through the centuries, expressed in the living tradition of the Byzantine Church.
+      </p>
+      <p>
+        Eastern Catholic churches follow the same Byzantine liturgical tradition and feast calendar as Eastern Orthodox churches, but are in full communion with the Pope of Rome. We strive to serve as an example of Christian unity to all.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-section {
+    padding-block: var(--space-2xl);
+  }
+
+  .about-section--alt {
+    background-color: var(--color-bg-alt);
+  }
+
+  .about-section h2 {
+    margin-bottom: var(--space-lg);
+    color: var(--theme-primary);
+  }
+
+  .about-section p {
+    margin-bottom: var(--space-md);
+    color: var(--color-text);
+  }
+
+  .about-section p:last-child {
+    margin-bottom: 0;
+  }
+</style>

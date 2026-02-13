@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import { getCurrentThemeSlug } from '../utils/liturgical-calendar';
+
+const themeSlug = getCurrentThemeSlug();
+---
+
+<BaseLayout title="St. Philip The Apostle Byzantine Catholic Church" isHomepage={true}>
+  <HeroSection themeSlug={themeSlug} />
+
+  <section class="welcome fade-in-section">
+    <div class="container container--narrow">
+      <h2>Welcome to St. Philip</h2>
+      <p>
+        We are a Catholic parish of the Byzantine Ruthenian tradition, in full communion with the Pope of Rome.   We belong to the Byzantine Catholic Holy Protection of Mary Eparchy of Phoenix.
+      </p>
+      <p>
+        We welcome visitors!  You may join us for any of our services.  Attendance at the Sunday Divine Liturgy fulfills the Sunday Obligation for any Catholic, and any Catholic properly prepared may receive Holy Communion in our Church.
+      </p>
+      <div class="welcome__ctas">
+        <a href="/about/" class="btn btn--primary">Learn About Us</a>
+        <a href="/calendar/" class="btn btn--outline">View Calendar</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="services fade-in-section">
+    <div class="container container--narrow">
+      <h2>Liturgical Schedule</h2>
+      <div class="services__grid">
+        <div class="services__item">
+          <h3>Sunday Confessions</h3>
+          <p class="services__time">8:30 AM</p>
+        </div>
+        <div class="services__item">
+          <h3>Sunday Divine Liturgy</h3>
+          <p class="services__time">9:30 AM</p>
+        </div>
+        <div class="services__item">
+          <h3>Weekdays and Feast Days</h3>
+          <p class="services__time">See Calendar</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="find-us fade-in-section">
+    <div class="container container--narrow">
+      <h2>Find Us</h2>
+      <div class="find-us__content">
+        <address class="find-us__address">
+          <p><strong>St. Philip Byzantine Catholic Church</strong></p>
+          <p>3866 65th Street</p>
+          <p>Sacramento, CA 95820</p>
+          <p><a href="tel:+19164521888">(916) 452-1888</a></p>
+          <p><a href="mailto:frmurin@ephx.org">frmurin@ephx.org</a></p>
+        </address>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Homepage-specific scroll behavior
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    const header = document.querySelector<HTMLElement>('[data-header]');
+    const heroContent = document.querySelector<HTMLElement>('[data-hero-content]');
+    const scrollPrompt = document.querySelector<HTMLElement>('[data-scroll-prompt]');
+    const hero = document.querySelector<HTMLElement>('[data-hero]');
+
+    if (header && heroContent && hero) {
+      let ticking = false;
+
+      const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const heroHeight = hero.offsetHeight;
+          const scrollFraction = Math.min(scrollY / (heroHeight * 0.6), 1);
+
+          // Hero content fades and moves up
+          heroContent.style.opacity = String(1 - scrollFraction);
+          heroContent.style.transform = `translateY(${-scrollFraction * 40}px)`;
+
+          // Scroll prompt fades out quickly
+          if (scrollPrompt) {
+            scrollPrompt.style.opacity = String(Math.max(1 - scrollFraction * 3, 0));
+          }
+
+          // Header becomes opaque as user scrolls
+          if (scrollY > 50) {
+            header.classList.add('is-scrolled');
+          } else {
+            header.classList.remove('is-scrolled');
+          }
+
+          ticking = false;
+        });
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+  }
+</script>
+
+<style>
+  .welcome {
+    text-align: center;
+  }
+
+  .welcome h2 {
+    margin-bottom: var(--space-lg);
+  }
+
+  .welcome p {
+    margin-inline: auto;
+    margin-bottom: var(--space-md);
+    color: var(--color-text);
+  }
+
+  .welcome__ctas {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--space-xl);
+  }
+
+  .services {
+    background-color: var(--color-bg-alt);
+  }
+
+  .services h2 {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .services__item {
+    text-align: center;
+    padding: var(--space-lg);
+    background-color: #ffffff;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+  }
+
+  .services__item h3 {
+    font-size: 1.1rem;
+    margin-bottom: var(--space-sm);
+    color: var(--theme-primary);
+  }
+
+  .services__time {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-heading);
+  }
+
+  .find-us {
+    text-align: center;
+  }
+
+  .find-us h2 {
+    margin-bottom: var(--space-xl);
+  }
+
+  .find-us__address {
+    font-style: normal;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  .find-us__address a {
+    color: var(--theme-primary);
+  }
+</style>
