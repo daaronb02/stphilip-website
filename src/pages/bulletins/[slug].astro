@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BannerImage from '../../components/BannerImage.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const bulletins = await getCollection('bulletins', ({ data }) => !data.draft);
+  return bulletins.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout title={`${entry.data.title} — St. Philip Byzantine Catholic Church`}>
+  <BannerImage title="Bulletins" subtitle={entry.data.title} />
+
+  <article class="bulletin fade-in-section">
+    <div class="container container--narrow">
+      <a href="/bulletins/" class="bulletin__back">&larr; All Bulletins</a>
+
+      {entry.data.priority === 'urgent' && (
+        <span class="bulletin__badge">Urgent</span>
+      )}
+
+      <h1 class="bulletin__title">{entry.data.title}</h1>
+
+      <time class="bulletin__date" datetime={entry.data.publishDate.toISOString()}>
+        {entry.data.publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </time>
+
+      {entry.data.image && (
+        <img src={entry.data.image} alt="" class="bulletin__image" />
+      )}
+
+      <div class="bulletin__body">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .bulletin {
+    padding-block: var(--space-2xl);
+  }
+
+  .bulletin__back {
+    display: inline-block;
+    color: var(--theme-accent);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    margin-bottom: var(--space-lg);
+    transition: opacity var(--transition-fast);
+  }
+
+  .bulletin__back:hover {
+    opacity: 0.7;
+  }
+
+  .bulletin__badge {
+    display: inline-block;
+    background-color: var(--theme-accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2em 0.6em;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-sm);
+  }
+
+  .bulletin__title {
+    color: var(--color-heading);
+    margin-bottom: var(--space-sm);
+  }
+
+  .bulletin__date {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .bulletin__image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .bulletin__body {
+    color: var(--color-text);
+    line-height: 1.8;
+  }
+
+  .bulletin__body :global(h2) {
+    color: var(--color-heading);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .bulletin__body :global(p) {
+    margin-bottom: var(--space-md);
+  }
+
+  .bulletin__body :global(ul),
+  .bulletin__body :global(ol) {
+    margin-bottom: var(--space-md);
+    padding-left: var(--space-lg);
+  }
+
+  .bulletin__body :global(li) {
+    margin-bottom: var(--space-xs);
+  }
+</style>

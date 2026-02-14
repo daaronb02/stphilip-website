@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BannerImage from '../../components/BannerImage.astro';
+import { getCollection } from 'astro:content';
+
+const allHomilies = await getCollection('homilies', ({ data }) => !data.draft);
+const homilies = allHomilies.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const typeLabels: Record<string, string> = {
+  text: 'Text',
+  audio: 'Audio',
+  video: 'Video',
+};
+---
+
+<BaseLayout title="Homilies — St. Philip Byzantine Catholic Church" description="Homilies and sermons from St. Philip Byzantine Catholic Church.">
+  <BannerImage title="Homilies" />
+
+  <section class="homilies-section fade-in-section">
+    <div class="container container--narrow">
+      {homilies.length === 0 ? (
+        <p class="empty-message">No homilies have been published yet. Check back soon!</p>
+      ) : (
+        <div class="homilies-list">
+          {homilies.map((homily) => (
+            <a href={`/homilies/${homily.slug}/`} class="homily-card">
+              <div class="homily-card__content">
+                <div class="homily-card__meta">
+                  <span class="homily-card__type">{typeLabels[homily.data.contentType]}</span>
+                  {homily.data.season && (
+                    <span class="homily-card__season">{homily.data.season}</span>
+                  )}
+                </div>
+                <h2 class="homily-card__title">{homily.data.title}</h2>
+                <p class="homily-card__preacher">{homily.data.preacher}</p>
+                <time class="homily-card__date" datetime={homily.data.date.toISOString()}>
+                  {homily.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                {homily.data.scriptureRefs && (
+                  <p class="homily-card__scripture">{homily.data.scriptureRefs}</p>
+                )}
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .homilies-section {
+    padding-block: var(--space-2xl);
+  }
+
+  .empty-message {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+    padding: var(--space-2xl) 0;
+  }
+
+  .homilies-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .homily-card {
+    display: block;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--theme-accent);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+  }
+
+  .homily-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .homily-card__content {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .homily-card__meta {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+  }
+
+  .homily-card__type {
+    display: inline-block;
+    background-color: var(--theme-primary);
+    color: var(--theme-text-on-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2em 0.6em;
+    border-radius: var(--radius-sm);
+  }
+
+  .homily-card__season {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  .homily-card__title {
+    font-size: 1.25rem;
+    color: var(--color-heading);
+    margin: 0;
+  }
+
+  .homily-card__preacher {
+    color: var(--theme-accent);
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .homily-card__date {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .homily-card__scripture {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin: 0;
+  }
+</style>

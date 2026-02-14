@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BannerImage from '../../components/BannerImage.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const homilies = await getCollection('homilies', ({ data }) => !data.draft);
+  return homilies.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = entry.data.contentType === 'text' || entry.body?.trim()
+  ? await entry.render()
+  : { Content: null };
+
+function getYouTubeId(url: string): string | null {
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=))([^&?#]+)/);
+  return match ? match[1] : null;
+}
+
+const videoId = entry.data.videoUrl ? getYouTubeId(entry.data.videoUrl) : null;
+---
+
+<BaseLayout title={`${entry.data.title} — St. Philip Byzantine Catholic Church`}>
+  <BannerImage title="Homilies" subtitle={entry.data.title} />
+
+  <article class="homily fade-in-section">
+    <div class="container container--narrow">
+      <a href="/homilies/" class="homily__back">&larr; All Homilies</a>
+
+      <h1 class="homily__title">{entry.data.title}</h1>
+
+      <div class="homily__meta">
+        <p class="homily__preacher">{entry.data.preacher}</p>
+        <time class="homily__date" datetime={entry.data.date.toISOString()}>
+          {entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        {entry.data.season && (
+          <span class="homily__season">{entry.data.season}</span>
+        )}
+        {entry.data.scriptureRefs && (
+          <p class="homily__scripture">{entry.data.scriptureRefs}</p>
+        )}
+      </div>
+
+      {entry.data.contentType === 'audio' && entry.data.audioUrl && (
+        <div class="homily__audio">
+          <audio controls preload="metadata">
+            <source src={entry.data.audioUrl} />
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      )}
+
+      {entry.data.contentType === 'video' && videoId && (
+        <div class="homily__video">
+          <iframe
+            src={`https://www.youtube.com/embed/${videoId}`}
+            title={entry.data.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      )}
+
+      {Content && (
+        <div class="homily__body">
+          <Content />
+        </div>
+      )}
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .homily {
+    padding-block: var(--space-2xl);
+  }
+
+  .homily__back {
+    display: inline-block;
+    color: var(--theme-accent);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    margin-bottom: var(--space-lg);
+    transition: opacity var(--transition-fast);
+  }
+
+  .homily__back:hover {
+    opacity: 0.7;
+  }
+
+  .homily__title {
+    color: var(--color-heading);
+    margin-bottom: var(--space-md);
+  }
+
+  .homily__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-md);
+    align-items: baseline;
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .homily__preacher {
+    color: var(--theme-accent);
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .homily__date {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+  }
+
+  .homily__season {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  .homily__scripture {
+    width: 100%;
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin: 0;
+  }
+
+  .homily__audio {
+    margin-bottom: var(--space-xl);
+  }
+
+  .homily__audio audio {
+    width: 100%;
+  }
+
+  .homily__video {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin-bottom: var(--space-xl);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .homily__video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .homily__body {
+    color: var(--color-text);
+    line-height: 1.8;
+  }
+
+  .homily__body :global(h2) {
+    color: var(--color-heading);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .homily__body :global(p) {
+    margin-bottom: var(--space-md);
+  }
+
+  .homily__body :global(blockquote) {
+    border-left: 3px solid var(--theme-accent);
+    padding-left: var(--space-md);
+    margin: var(--space-lg) 0;
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+</style>
