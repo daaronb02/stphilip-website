@@ -30,7 +30,7 @@ const { name, description, url } = Astro.props;
   }
 
   .link-card:hover {
-    border-color: var(--theme-primary);
+    border-color: var(--theme-accent);
     box-shadow: var(--shadow-md);
     transform: translateY(-2px);
   }
@@ -39,7 +39,7 @@ const { name, description, url } = Astro.props;
     font-family: var(--font-heading);
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--theme-primary);
+    color: var(--theme-accent);
     margin-bottom: var(--space-sm);
   }
 
@@ -54,7 +54,7 @@ const { name, description, url } = Astro.props;
     top: var(--space-lg);
     right: var(--space-lg);
     font-size: 1.25rem;
-    color: var(--theme-primary);
+    color: var(--theme-accent);
     opacity: 0;
     transform: translateX(-4px);
     transition: opacity var(--transition-fast), transform var(--transition-fast);
