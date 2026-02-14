@@ -17,12 +17,6 @@ collections:
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
-      - label: "Priority"
-        name: "priority"
-        widget: "select"
-        options: ["normal", "urgent"]
-        default: "normal"
-
   - name: "gallery"
     label: "Gallery"
     folder: "src/content/gallery"
@@ -49,20 +43,8 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Preacher", name: "preacher", widget: "string" }
+      - { label: "Author", name: "author", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
-      - label: "Season"
-        name: "season"
-        widget: "select"
-        required: false
-        options:
-          - "Great Lent"
-          - "Pascha"
-          - "Pentecost"
-          - "Advent"
-          - "Christmas"
-          - "Theophany"
-          - "Ordinary Time"
       - label: "Content Type"
         name: "contentType"
         widget: "select"
@@ -71,5 +53,4 @@ collections:
       - { label: "Body", name: "body", widget: "markdown", required: false }
       - { label: "Audio URL", name: "audioUrl", widget: "string", required: false }
       - { label: "Video URL", name: "videoUrl", widget: "string", required: false }
-      - { label: "Scripture References", name: "scriptureRefs", widget: "string", required: false }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }

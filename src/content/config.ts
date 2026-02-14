@@ -7,7 +7,6 @@ const bulletins = defineCollection({
     publishDate: z.coerce.date(),
     image: z.string().optional(),
     draft: z.boolean().default(false),
-    priority: z.enum(['normal', 'urgent']).default('normal'),
   }),
 });
 
@@ -33,13 +32,11 @@ const homilies = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    preacher: z.string(),
+    author: z.string(),
     date: z.coerce.date(),
-    season: z.string().optional(),
     contentType: z.enum(['text', 'audio', 'video']).default('text'),
     audioUrl: z.string().optional(),
     videoUrl: z.string().optional(),
-    scriptureRefs: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });

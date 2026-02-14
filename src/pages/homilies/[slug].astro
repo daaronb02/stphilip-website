@@ -34,16 +34,10 @@ const videoId = entry.data.videoUrl ? getYouTubeId(entry.data.videoUrl) : null;
       <h1 class="homily__title">{entry.data.title}</h1>
 
       <div class="homily__meta">
-        <p class="homily__preacher">{entry.data.preacher}</p>
+        <p class="homily__preacher">{entry.data.author}</p>
         <time class="homily__date" datetime={entry.data.date.toISOString()}>
           {entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </time>
-        {entry.data.season && (
-          <span class="homily__season">{entry.data.season}</span>
-        )}
-        {entry.data.scriptureRefs && (
-          <p class="homily__scripture">{entry.data.scriptureRefs}</p>
-        )}
       </div>
 
       {entry.data.contentType === 'audio' && entry.data.audioUrl && (
@@ -117,12 +111,6 @@ const videoId = entry.data.videoUrl ? getYouTubeId(entry.data.videoUrl) : null;
   .homily__date {
     font-size: 0.9375rem;
     color: var(--color-text-muted);
-  }
-
-  .homily__season {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    font-style: italic;
   }
 
   .homily__scripture {

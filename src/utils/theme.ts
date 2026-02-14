@@ -21,7 +21,7 @@ export const themes: Record<string, LiturgicalTheme> = {
       primary: '#6b1d2a',
       primaryLight: '#8a3040',
       primaryDark: '#4a1019',
-      accent: '#c4454d',
+      accent: '#4a1019',
       textOnPrimary: '#ffffff',
       heroOverlay: 'rgba(107, 29, 42, 0.49)',
     },
