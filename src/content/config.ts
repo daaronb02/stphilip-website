@@ -6,7 +6,6 @@ const bulletins = defineCollection({
     title: z.string(),
     publishDate: z.coerce.date(),
     image: z.string().optional(),
-    summary: z.string(),
     draft: z.boolean().default(false),
     priority: z.enum(['normal', 'urgent']).default('normal'),
   }),
