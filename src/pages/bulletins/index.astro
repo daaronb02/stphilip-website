@@ -35,7 +35,6 @@ const bulletins = allBulletins.sort((a, b) => {
                 <time class="bulletin-card__date" datetime={bulletin.data.publishDate.toISOString()}>
                   {bulletin.data.publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                 </time>
-                <p class="bulletin-card__summary">{bulletin.data.summary}</p>
               </div>
             </a>
           ))}
@@ -121,9 +120,4 @@ const bulletins = allBulletins.sort((a, b) => {
     color: var(--color-text-muted);
   }
 
-  .bulletin-card__summary {
-    color: var(--color-text);
-    line-height: 1.6;
-    margin: 0;
-  }
 </style>
