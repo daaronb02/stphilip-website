@@ -22,10 +22,6 @@ const { Content } = await entry.render();
     <div class="container container--narrow">
       <a href="/bulletins/" class="bulletin__back">&larr; All Bulletins</a>
 
-      {entry.data.priority === 'urgent' && (
-        <span class="bulletin__badge">Urgent</span>
-      )}
-
       <h1 class="bulletin__title">{entry.data.title}</h1>
 
       <time class="bulletin__date" datetime={entry.data.publishDate.toISOString()}>

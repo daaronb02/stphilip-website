@@ -34,7 +34,7 @@ const videoId = entry.data.videoUrl ? getYouTubeId(entry.data.videoUrl) : null;
       <h1 class="homily__title">{entry.data.title}</h1>
 
       <div class="homily__meta">
-        <p class="homily__preacher">{entry.data.author}</p>
+        <p class="homily__author">{entry.data.author}</p>
         <time class="homily__date" datetime={entry.data.date.toISOString()}>
           {entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </time>
@@ -102,7 +102,7 @@ const videoId = entry.data.videoUrl ? getYouTubeId(entry.data.videoUrl) : null;
     border-bottom: 1px solid var(--color-border);
   }
 
-  .homily__preacher {
+  .homily__author {
     color: var(--theme-accent);
     font-weight: 500;
     margin: 0;

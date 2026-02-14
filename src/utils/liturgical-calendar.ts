@@ -52,18 +52,13 @@ const dateRanges: DateRange[] = [
 
   // === FIXED FEASTS ===
 
-  // Advent) — Nov 15 to Dec 24
+  // St. Philip's Fast (Advent) — Nov 15 to Dec 24
   { slug: 'penitential', label: 'Nativity Fast',        start: '11-15', end: '12-24' },
   // Christmas — Dec 25 to Jan 4
   { slug: 'christmas',   label: 'Christmas',            start: '12-25', end: '12-31' },
   { slug: 'christmas',   label: 'Christmas',            start: '01-01', end: '01-04' },
   // Theophany — Jan 5-14
   { slug: 'theophany',   label: 'Theophany',            start: '01-05', end: '01-14' },
-
-  // Apostles' Fast (variable start, but roughly June 8 – June 28)
-  { slug: 'penitential', label: "Apostles' Fast",       start: '06-08', end: '06-28' },
-  // Dormition Fast — Aug 1-14
-  { slug: 'penitential', label: 'Dormition Fast',       start: '08-01', end: '08-14' },
 
   // === MARIAN FEASTS (fixed dates) ===
 
@@ -75,8 +70,10 @@ const dateRanges: DateRange[] = [
   { slug: 'marian',      label: 'Protection of the Theotokos', start: '10-01', end: '10-01' },
   // Annunciation — Mar 25
   { slug: 'marian',      label: 'Annunciation',         start: '03-25', end: '03-25' },
+  // Immaculate Conception — Dec 8
+  { slug: 'marian',      label: 'Immaculate Conception', start: '12-08', end: '12-08' },
 
-  // === FEASTS OF THE CROSS ===
+  // === FEASTS OF THE CROSS AND MARTYRS ===
 
   // Exaltation of the Cross — Sep 14
   { slug: 'penitential', label: 'Exaltation of the Cross', start: '09-14', end: '09-14' },

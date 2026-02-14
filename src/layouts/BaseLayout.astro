@@ -11,7 +11,7 @@ interface Props {
   isHomepage?: boolean;
 }
 
-const { title, description = 'St. Philip Byzantine Catholic Church — an Eastern Catholic parish', isHomepage = false } = Astro.props;
+const { title, description = 'St. Philip Byzantine Catholic Church', isHomepage = false } = Astro.props;
 
 const themeSlug = getCurrentThemeSlug();
 const theme = getTheme(themeSlug);
