@@ -17,25 +17,6 @@ collections:
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
-  - name: "gallery"
-    label: "Gallery"
-    folder: "src/content/gallery"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Event Date", name: "eventDate", widget: "datetime" }
-      - { label: "Cover Image", name: "coverImage", widget: "image" }
-      - { label: "Description", name: "description", widget: "text" }
-      - label: "Photos"
-        name: "photos"
-        widget: "list"
-        fields:
-          - { label: "Image", name: "image", widget: "image" }
-          - { label: "Caption", name: "caption", widget: "string", required: false }
-          - { label: "Alt Text", name: "alt", widget: "string" }
-      - { label: "Draft", name: "draft", widget: "boolean", default: false }
-
   - name: "homilies"
     label: "Homilies"
     folder: "src/content/homilies"

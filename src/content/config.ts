@@ -10,24 +10,6 @@ const bulletins = defineCollection({
   }),
 });
 
-const gallery = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    eventDate: z.coerce.date(),
-    coverImage: z.string(),
-    description: z.string(),
-    photos: z.array(
-      z.object({
-        image: z.string(),
-        caption: z.string().optional(),
-        alt: z.string(),
-      })
-    ),
-    draft: z.boolean().default(false),
-  }),
-});
-
 const homilies = defineCollection({
   type: 'content',
   schema: z.object({
@@ -41,4 +23,4 @@ const homilies = defineCollection({
   }),
 });
 
-export const collections = { bulletins, gallery, homilies };
+export const collections = { bulletins, homilies };
