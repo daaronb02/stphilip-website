@@ -23,7 +23,7 @@ export const themes: Record<string, LiturgicalTheme> = {
       primaryDark: '#4a1019',
       accent: '#4a1019',
       textOnPrimary: '#ffffff',
-      heroOverlay: 'rgba(107, 29, 42, 0.49)',
+      heroOverlay: 'rgba(107, 29, 42, 0.26)',
     },
   },
   pascha: {
