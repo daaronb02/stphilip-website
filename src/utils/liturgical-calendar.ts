@@ -42,23 +42,23 @@ const dateRanges: DateRange[] = [
   // === MOVEABLE FEASTS (update annually) ===
 
   // Great Lent (Clean Monday through Saturday before Palm Sunday)
-  { slug: 'penitential', label: 'Great Lent',           start: '02-23', end: '04-04' },
-  // Palm Sunday through Great Saturday
-  { slug: 'penitential', label: 'Holy Week',            start: '04-05', end: '04-11' },
+  { slug: 'penitential', label: 'Great Lent',           start: '02-16', end: '03-28' },
+  // Monday after Palm Sunday through Holy Saturday
+  { slug: 'penitential', label: 'Holy Week',            start: '03-30', end: '04-04' },
   // Pascha and Bright Week
-  { slug: 'pascha',      label: 'Pascha',               start: '04-12', end: '04-19' },
-  // Pentecost (the day and its afterfeast)
-  { slug: 'pentecost',   label: 'Pentecost',            start: '05-31', end: '06-07' },
+  { slug: 'pascha',      label: 'Pascha',               start: '04-05', end: '04-11' },
+  // Pentecost
+  { slug: 'pentecost',   label: 'Pentecost',            start: '04-24', end: '04-24' },
 
   // === FIXED FEASTS ===
 
   // St. Philip's Fast (Advent) — Nov 15 to Dec 24
   { slug: 'penitential', label: 'Nativity Fast',        start: '11-15', end: '12-24' },
-  // Christmas — Dec 25 to Jan 4
+  // Christmas through Theophany Eve — Dec 25 to Jan 4
   { slug: 'christmas',   label: 'Christmas',            start: '12-25', end: '12-31' },
   { slug: 'christmas',   label: 'Christmas',            start: '01-01', end: '01-04' },
-  // Theophany — Jan 5-14
-  { slug: 'theophany',   label: 'Theophany',            start: '01-05', end: '01-14' },
+  // Theophany Eve through Octave — Jan 5-14
+  { slug: 'theophany',   label: 'Theophany',            start: '01-05', end: '01-12' },
 
   // === MARIAN FEASTS (fixed dates) ===
 
